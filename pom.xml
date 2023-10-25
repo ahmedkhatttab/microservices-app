@@ -5,8 +5,13 @@
 	<groupId>com.amsoft.microservice</groupId>
 	<artifactId>full-microservice-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
 	<name>full-microservice-app</name>
 	<description>Hands on Microservices</description>
+
+	<modules>
+		<module>customer</module>
+	</modules>
 
 	<properties>
 		<java.version>17</java.version>
