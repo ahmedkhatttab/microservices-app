@@ -1,4 +1,4 @@
-package com.amsoft.microservice.customer;
+package com.amsoft.microservice.clients.fraud;
 
 public record FraudCheckResponse(Boolean isFraudster) {
 }

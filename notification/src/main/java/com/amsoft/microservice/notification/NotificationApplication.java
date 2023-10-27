@@ -1,4 +1,4 @@
-package com.amsoft.microservice.customer;
+package com.amsoft.microservice.notification;
 
 
 import org.springframework.boot.SpringApplication;
@@ -7,12 +7,12 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
+@EnableFeignClients
 @EnableDiscoveryClient
-@EnableFeignClients(basePackages = {"com.amsoft.microservice.clients"})
-public class CustomerApplication {
+public class NotificationApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CustomerApplication.class, args);
+        SpringApplication.run(NotificationApplication.class, args);
     }
 
 }
