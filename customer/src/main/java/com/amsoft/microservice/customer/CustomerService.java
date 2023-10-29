@@ -9,6 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -49,6 +52,22 @@ public class CustomerService {
 
         notificationClient.createNotification(notificationRequest);
 
+    }
+
+
+    List<CustomerDto> findAllCustomers(){
+        List<Customer> customerList = customerRepo.findAll();
+        return customerList.stream().map(customer -> mapToDto(customer)).collect(Collectors.toList());
+    }
+
+
+    CustomerDto findCustomerById(Long id){
+        Customer customer = customerRepo.findById(id).orElseThrow(()-> new RuntimeException("User Not Found"));
+        return mapToDto(customer);
+    }
+
+    private CustomerDto mapToDto(Customer customer){
+        return new CustomerDto(customer.getFirstName(), customer.getLastName(), customer.getEmail());
     }
 
 }

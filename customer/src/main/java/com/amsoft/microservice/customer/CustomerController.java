@@ -3,10 +3,10 @@ package com.amsoft.microservice.customer;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/customers")
@@ -19,6 +19,17 @@ public class CustomerController {
     public void registerCustomer(@RequestBody CustomerDto customerDto){
         log.info("Customer: {}", customerDto);
         customerService.registerCustomer(customerDto);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CustomerDto> findById(@PathVariable Long id){
+        return ResponseEntity.ok(customerService.findCustomerById(id));
+    }
+
+
+    @GetMapping
+    public ResponseEntity<List<CustomerDto>> getAllCustomers(){
+        return ResponseEntity.ok(customerService.findAllCustomers());
     }
 
 }
